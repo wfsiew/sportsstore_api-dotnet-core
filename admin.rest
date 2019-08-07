@@ -1,0 +1,22 @@
+@base_url = http://localhost:5000/api/admin
+
+GET {{base_url}}/products
+
+###
+
+GET {{base_url}}/product/1
+
+###
+
+POST {{base_url}}/product/1
+Content-Type: application/json
+
+{
+  "productID": 1,
+  "name": "Kayak",
+  "description": "A boat for one person",
+  "price": 275.00,
+  "category": "Watersports"
+}
+
+###
