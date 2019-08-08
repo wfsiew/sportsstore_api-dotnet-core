@@ -25,8 +25,37 @@ namespace sportsstore_api_dotnet_core.Controllers
             return q.ToList();
         }
 
+        [HttpPost("markshipped/{orderID}")]
+        public ActionResult<Dictionary<string, object>> MarkShipped(int orderID)
+        {
+            var m = new Dictionary<string, object>();
+            Order order = repository.Orders
+                .FirstOrDefault(o => o.OrderID == orderID);
+            if (order != null) {
+                order.Shipped = true;
+                repository.SaveOrder(order);
+                m["success"] = 1;
+            }
+
+            else {
+                return BadRequest();
+            }
+            
+            return m;
+        }
+
         [HttpPost("checkout")]
-        public ActionResult<Order> Checkout(Dictionary<string, object> m)
+        public ActionResult<Order> Checkout(Checkout checkout)
+        {
+            Order o = checkout.Order;
+            o.Lines = checkout.Lines;
+            repository.SaveOrder(o);
+
+            return o;
+        }
+
+        [HttpPost("checkoutxxx")]
+        public ActionResult<Order> Checkoutxxx(Dictionary<string, object> m)
         {
             Order o = new Order {
                 OrderID = 0,
