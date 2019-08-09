@@ -1,3 +1,5 @@
 dotnet ef migrations add Initial
 
 dotnet ef migrations add Orders
+
+dotnet ef database update
