@@ -20,3 +20,8 @@ Content-Type: application/json
 }
 
 ###
+
+POST {{base_url}}/product-seed
+Content-Type: application/json
+
+###

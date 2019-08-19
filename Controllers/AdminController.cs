@@ -55,5 +55,20 @@ namespace sportsstore_api.Controllers
 
             return BadRequest();
         }
+
+        [HttpPost("product-seed")]
+        public ActionResult<Dictionary<string, object>> SeedProduct() {
+            for (int i = 0; i < 500; i++) {
+                Product o = new Product {
+                    Name = string.Format("Product - {0}", i),
+                    Description = string.Format("Product Desc - {0}", i),
+                    Price = 100.0M,
+                    Category = "Soccer"
+                };
+                repository.SaveProduct(o);
+            }
+
+            return new Dictionary<string, object> { { "success", 1 } };
+        }
     }
 }
